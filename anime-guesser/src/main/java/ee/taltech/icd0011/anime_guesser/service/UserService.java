@@ -1,6 +1,7 @@
 package ee.taltech.icd0011.anime_guesser.service;
 import ee.taltech.icd0011.anime_guesser.dto.UserRequest;
 import ee.taltech.icd0011.anime_guesser.dto.UserResponse;
+import ee.taltech.icd0011.anime_guesser.model.MyUserDetails;
 import ee.taltech.icd0011.anime_guesser.model.User;
 import ee.taltech.icd0011.anime_guesser.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -41,10 +42,6 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                Collections.emptyList() // You can add roles/authorities here
-        );
+        return new MyUserDetails(user);
     }
 }

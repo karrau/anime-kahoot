@@ -2,6 +2,7 @@ package ee.taltech.icd0011.anime_guesser.service;
 
 import ee.taltech.icd0011.anime_guesser.dto.AuthResponse;
 import ee.taltech.icd0011.anime_guesser.dto.UserRequest;
+import ee.taltech.icd0011.anime_guesser.dto.UserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,10 +24,9 @@ public class AuthService {
         this.userService = userService;
     }
 
-    public ResponseEntity<AuthResponse> register(UserRequest userRequest) {
-        userService.register(userRequest);
-        String token = jwtService.generateToken(userRequest.username());
-        return ResponseEntity.status(HttpStatus.CREATED).body(new AuthResponse(token));
+    public ResponseEntity<UserResponse> register(UserRequest userRequest) {
+        UserResponse createdUser = userService.register(userRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     public ResponseEntity<AuthResponse> verify(UserRequest userRequest) {

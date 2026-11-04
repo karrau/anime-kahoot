@@ -3,6 +3,7 @@ package ee.taltech.icd0011.anime_guesser.controller;
 
 import ee.taltech.icd0011.anime_guesser.dto.AuthResponse;
 import ee.taltech.icd0011.anime_guesser.dto.UserRequest;
+import ee.taltech.icd0011.anime_guesser.dto.UserResponse;
 import ee.taltech.icd0011.anime_guesser.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody @Valid UserRequest userRequest) {
+    public ResponseEntity<UserResponse> register(@RequestBody @Valid UserRequest userRequest) {
         return authService.register(userRequest);
     }
 
