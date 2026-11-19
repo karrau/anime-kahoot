@@ -2,13 +2,13 @@ package ee.taltech.icd0011.anime_guesser.model;
 
 
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("opening")
+@Table("openings")
 public class Opening {
 
+    @Id
     private Long id;
-    private long animeId;
-
     private String url;
 }

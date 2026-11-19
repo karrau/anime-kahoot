@@ -18,5 +18,7 @@ public class Anime {
 
     private String animeName;
 
+    private Opening opening;
+
 
 }

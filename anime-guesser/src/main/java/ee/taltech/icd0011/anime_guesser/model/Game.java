@@ -32,7 +32,7 @@ public class Game {
 
     private GameState gameState;
 
-    @NotBlank
+    @NotNull
     private Long hostId;
 
     @NotNull
@@ -47,13 +47,7 @@ public class Game {
     private LocalDateTime startedAt;
     private LocalDateTime finishedAt;
 
-    /**
-    @Valid
-    @MappedCollection(idColumn = "game_id")
-    private Set<GamePlayer> players = new HashSet<>();
+    private Set<Integer> animes = new HashSet<>();
 
-    @MappedCollection(idColumn = "game_id", keyColumn = "round_number")
-    private List<Round> rounds = new ArrayList<>();
-    **/
 
 }
