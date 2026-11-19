@@ -3,8 +3,7 @@ package ee.taltech.icd0011.anime_guesser.controller;
 
 import ee.taltech.icd0011.anime_guesser.dto.CreateGameRequest;
 import ee.taltech.icd0011.anime_guesser.dto.CreateGameResponse;
-import ee.taltech.icd0011.anime_guesser.model.Game;
-import ee.taltech.icd0011.anime_guesser.service.CreateGameService;
+import ee.taltech.icd0011.anime_guesser.service.GameService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/game")
 public class GameController {
 
-    private final CreateGameService createGameService;
+    private final GameService createGameService;
 
-    public GameController(CreateGameService createGameService){
+    public GameController(GameService createGameService){
         this.createGameService=createGameService;
     }
 

@@ -3,8 +3,6 @@ package ee.taltech.icd0011.anime_guesser.service;
 import ee.taltech.icd0011.anime_guesser.constants.GameState;
 import ee.taltech.icd0011.anime_guesser.dto.CreateGameRequest;
 import ee.taltech.icd0011.anime_guesser.dto.CreateGameResponse;
-import ee.taltech.icd0011.anime_guesser.dto.UserRequest;
-import ee.taltech.icd0011.anime_guesser.dto.UserResponse;
 import ee.taltech.icd0011.anime_guesser.model.Game;
 import ee.taltech.icd0011.anime_guesser.repository.AnimeRepository;
 import ee.taltech.icd0011.anime_guesser.repository.GameRepository;
@@ -17,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
-public class CreateGameService {
+public class GameService {
 
     private final GameRepository gameRepository;
     private final AnimeRepository animeRepository;
 
-    public CreateGameService(GameRepository gameRepository,  AnimeRepository animeRepository) {
+    public GameService(GameRepository gameRepository, AnimeRepository animeRepository) {
         this.gameRepository = gameRepository;
         this.animeRepository = animeRepository;
     }
@@ -34,13 +32,12 @@ public class CreateGameService {
 
     public CreateGameResponse createGame(@RequestBody @Valid CreateGameRequest createGameRequest) {
         Game game = new Game();
-        game.setAnimes(createGameRequest.animeIds());
         game.setMaxPlayers(createGameRequest.maxPlayers());
 
         Game savedGame = gameRepository.save(game);
 
 
-        return new CreateGameResponse(savedGame.getMaxPlayers(), savedGame.getAnimes().size(), createGameCode(), GameState.LOBBY);
+        return new CreateGameResponse(savedGame.getMaxPlayers(), createGameCode(), GameState.LOBBY);
     }
 
     public String createGameCode() {

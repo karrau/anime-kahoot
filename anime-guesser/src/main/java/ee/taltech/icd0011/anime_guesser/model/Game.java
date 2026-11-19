@@ -47,7 +47,6 @@ public class Game {
     private LocalDateTime startedAt;
     private LocalDateTime finishedAt;
 
-    private Set<Integer> animes = new HashSet<>();
 
 
 }
